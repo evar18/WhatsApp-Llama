@@ -1,39 +1,32 @@
-# Llama 2 Fine-tuning / Inference Recipes and Examples
-
-The 'llama-recipes' repository is a companion to the [Llama 2 model](https://github.com/facebookresearch/llama). The goal of this repository is to provide examples to quickly get started with fine-tuning for domain adaptation and how to run inference for the fine-tuned models. For ease of use, the examples use Hugging Face converted versions of the models. See steps for conversion of the model [here](#model-conversion-to-hugging-face).
-
-Llama 2 is a new technology that carries potential risks with use. Testing conducted to date has not — and could not — cover all scenarios. In order to help developers address these risks, we have created the [Responsible Use Guide](https://github.com/facebookresearch/llama/blob/main/Responsible-Use-Guide.pdf). More details can be found in our research paper as well. For downloading the models, follow the instructions on [Llama 2 repo](https://github.com/facebookresearch/llama).
-
-
 # Table of Contents
-1. [Quick start](#quick-start)
-2. [Model Conversion](#model-conversion-to-hugging-face)
-3. [Fine-tuning](#fine-tuning)
-    - [Single GPU](#single-gpu)
-    - [Multi GPU One Node](#multiple-gpus-one-node)
-    - [Multi GPU Multi Node](#multi-gpu-multi-node)
-4. [Inference](./docs/inference.md)
-5. [Repository Organization](#repository-organization)
-6. [License and Acceptable Use Policy](#license)
+1. [About "You"](#quick-start)
+2. [Results](#results)
+3. [Setup](#fine-tuning)
+    - [Get WhatsApp Chats](#single-gpu)
+    - [Create Dataset](#multiple-gpus-one-node)
+    - [Finetune](#multi-gpu-multi-node)
+4. [Future Work](./docs/inference.md)
+5. [License and Acceptable Use Policy](#license)
 
 
+# About "You"
 
-# Quick Start
+Finetune a Llama 7B Chat model on your WhatsApp conversations, and teach it to reply like you! Llama 7B chat is finetuned using parameter efficient finetuning (QLoRA) and int4 quantization on a single GPU (P100 with 16GB gpu memory). The entire experiment can be run for free using the $300 of Google Cloud compute credits received on new user sign ups.
 
-[Llama 2 Jupyter Notebook](quickstart.ipynb): This jupyter notebook steps you through how to finetune a Llama 2 model on the text summarization task using the [samsum](https://huggingface.co/datasets/samsum). The notebook uses parameter efficient finetuning (PEFT) and int8 quantization to finetune a 7B on a single GPU like an A10 with 24GB gpu memory.
+# Results
+LLama7B learned my texting style extremely quickly. Here are the changes that occurred post finetuning:
+1. Average words generated in output went down by x%
+2. it learnt my emoji usage
+3. It picked up on common phrases I use (Whaddup, 1 more)
+
+I personally ran a "Turing test" on my friends, where each of them asked me 3 questions on WhatsApp, and both I and finetuned LLaMa answered each question. Finetuned Llama7B managed to convince 3 of my x friends that it was the real Advaith, which is astounding given its extremely limited training period.
+
+# Setup
+
+[Llama 2 Jupyter Notebook](quickstart.ipynb): This jupyter notebook steps you through how to finetune a Llama 2 model on the text summarization task using the [samsum](https://huggingface.co/datasets/samsum). 
 
 **Note** All the setting defined in [config files](./configs/) can be passed as args through CLI when running the script, there is no need to change from config files directly.
 
-**Note** In case need to run PEFT model with FSDP, please make sure to use the PyTorch Nightlies.
-
-**For more in depth information checkout the following:**
-
-* [Single GPU Fine-tuning](./docs/single_gpu.md)
-* [Multi-GPU Fine-tuning](./docs/multi_gpu.md)
-* [LLM Fine-tuning](./docs/LLM_finetuning.md)
-* [Adding custom datasets](./docs/Dataset.md)
-* [Inference](./docs/inference.md)
-* [FAQs](./docs/FAQ.md)
 
 ## Requirements
 To run the examples, make sure to install the requirements using
