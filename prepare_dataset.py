@@ -20,22 +20,28 @@ def format_output(message):
     user = list(message.keys())[0]
     return message[user]
 
-dataset_folder = 'AutomaticWhatsappReplying/json_dataset'
-user_name = 'Advaith'
-save_file = 'FinalDataset.csv'
+if __name__=="__main__":
+    if len(sys.argv) != 4:
+        print("Usage: script_name.py <dataset_folder> <your_name> <save_file>")
+        sys.exit(1)
 
-conv = []
-for file in os.listdir(dataset_folder):
-    with open(dataset_folder + '/' + file, 'r') as f:
-        data = json.load(f)
-        count=0
-        for message in data:
-            if list(message.keys())[0]==user_name and count!=0: #expect the other person to start the conversation
-                if(count>=5):
-                    conv.append([format_context(data[count-5:count]),format_output(message)])
-                else:
-                    conv.append([format_context(data[0:count]),format_output(message)])
-            count+=1
 
-df = pd.DataFrame(conv)
-df.to_csv(save_file)
+    dataset_folder = sys.argv[1]#'AutomaticWhatsappReplying/json_dataset'
+    user_name = sys.argv[2]#'Advaith'
+    save_file = sys.argv[3]#'FinalDataset.csv'
+
+    conv = []
+    for file in os.listdir(dataset_folder):
+        with open(dataset_folder + '/' + file, 'r') as f:
+            data = json.load(f)
+            count=0
+            for message in data:
+                if list(message.keys())[0]==user_name and count!=0: #expect the other person to start the conversation
+                    if(count>=5):
+                        conv.append([format_context(data[count-5:count]),format_output(message)])
+                    else:
+                        conv.append([format_context(data[0:count]),format_output(message)])
+                count+=1
+
+    df = pd.DataFrame(conv)
+    df.to_csv(save_file)
