@@ -58,8 +58,8 @@ Here's the expected format for the preprocessed dataset:
 ```
 | ID |   Context  |    Reply   |
 | -- | ---------- | ---------- |
-| 1  | Friend: Hi | What's up? |
-|    | You: Hi    |            |
+| 1  | You: Hi    | What's up? |
+|    | Friend: Hi |            |
 
 ```
 
