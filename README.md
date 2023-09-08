@@ -8,12 +8,14 @@ This repository is a fork of the `facebookresearch/llama-recipes`, adapted to fi
    - The average words generated in the finetuned Llama is *300%* more more than vanilla Llama. I usually type longer replies, so this checks out
    - The model accurately replicated common phrases I say and my emoji usage
   
-2. **Turing Test with Friends**: As an experiment, I asked my friends to ask me 3 questions on WhatsApp, and responded with 2 candidate responses (one from me and one from the LLM). My friends then had to guess which candidate response was mine and which one was Llama's. The result? The model fooled *10%* (2/20) of my friends. Some of the model's responses were eerily similar to my own. Here are some examples:
-    - *Example 1*: [Add text here]
-    - *Example 2*: [Add text here]
-    - *Example 3*: [Add text here]
+2. **Turing Test with Friends**: As an experiment, I asked my friends to ask me 3 questions on WhatsApp, and responded with 2 candidate responses (one from me and one from the LLM). My friends then had to guess which candidate response was mine and which one was Llama's.
+
+The result? The model fooled *10%* (2/20) of my friends. Some of the model's responses were eerily similar to my own. Here are some examples:
+    - *Example 1*: <img width="628" alt="image" src="https://github.com/Ads-cmu/WhatsApp-Llama/assets/107292631/65361711-79eb-4cf1-862d-fae93a6b674a">
+
+    - *Example 2*: <img width="630" alt="image" src="https://github.com/Ads-cmu/WhatsApp-Llama/assets/107292631/700fadd0-086f-40fc-8337-5071accec94f">
   
-   I believe that with access to more compute, this number could easily be pushed to ~40% (near random guessing).  
+   I believe that with access to more compute, this number could easily be pushed to ~40% (which would be near random guessing).  
 
 ## Getting Started
 
@@ -68,11 +70,9 @@ For reference, a 10MB dataset will complete 1 epoch in approximately 7 hours on 
 
 ## Conclusion
 
-This adaptation of the Llama model offers a fun way to see how well a LLM can mimic your personal texting style. Remember to use AI responsibly and inform your friends if you're using the model to chat with them.
+This adaptation of the Llama model offers a fun way to see how well a LLM can mimic your personal texting style. Remember to use AI responsibly and inform your friends if you're using the model to chat with them!
 
 ---
-
-Happy training, and have fun watching LLM text like you!
 
 
 
