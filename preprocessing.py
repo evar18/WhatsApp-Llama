@@ -1,6 +1,8 @@
 import re
 import json
 import os 
+import sys
+
 def remove_placeholders(message):
 	skip_list = ['<This message was edited>','This message was deleted.',' omitted\n']
 	for phrase in skip_list:
@@ -8,9 +10,9 @@ def remove_placeholders(message):
 			return True
 	return False
 
-def replace_users(message, contact_name, user_name,bot_name):
-	message = re.sub('Advaith Sridhar', bot_name, message)
-	message = re.sub(contact_name, user_name, message)
+def replace_users(message, contact_name, friend_name,bot_name, your_contact_name):
+	message = re.sub(your_contact_name, bot_name, message)
+	message = re.sub(contact_name, friend_name, message)
 	return message
 
 def remove_links(message):
@@ -59,13 +61,18 @@ def collate_messages(messages, user_name, bot_name, friend_name):
 
 
 if __name__ == "__main__":
-	user_name='User'
-	bot_name='Advaith'
-	friend_name = 'Akash'
-	contact_name = 'Akash Ramdas US' #'Akash Ramdas US','Vineet Gopakumar','Shubham IITM','Adarsh','Ritu Gala USA', 'Aiswarya Sasi', 'Briti USA', 'Samvida S Venkatesh','Rikkin Majani Flipkart APM'
-	with open('../Dataset/'+friend_name+'Chat.txt', encoding="utf-8") as f:
-		lines = f.readlines()
+	if len(sys.argv) != 6:
+		print("Usage: script_name.py <your_name> <your_contact_name> <friend_name> <friend_contact_name> <folder_path>")
+		sys.exit(1)
 
+	bot_name = sys.argv[1]
+	your_contact_name = sys.argv[2]
+	friend_name = sys.argv[3]
+	contact_name = sys.argv[4]
+	folder_path = sys.argv[5]
+
+	with open(folder_path+friend_name+'Chat.txt', encoding="utf-8") as f:
+		lines = f.readlines()
 
 	regex = r"\s?\[\d{1,2}\/\d{1,2}\/\d{2,4}\, \d{1,2}:\d{1,2}:\d{1,2}\s[APM]{2}\]\s" #remove timestamps
 
@@ -77,12 +84,12 @@ if __name__ == "__main__":
 			continue
 		message = remove_links(message)
 		# message = remove_placeholders(message)
-		message = replace_users(message, contact_name, user_name, bot_name)
+		message = replace_users(message, contact_name, friend_name, bot_name, your_contact_name)
 
 		dataset.append(message)
 		#print(message)
 
 	#print(dataset)
-	dataset = collate_messages(dataset, user_name, bot_name, friend_name)
+	dataset = collate_messages(dataset, friend_name, bot_name, friend_name)
 	with open('json_dataset/'+friend_name+'Chat.json', 'w') as file:
 		json.dump(dataset, file)
