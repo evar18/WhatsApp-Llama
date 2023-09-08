@@ -11,9 +11,16 @@ This repository is a fork of the `facebookresearch/llama-recipes`, adapted to fi
 2. **Turing Test with Friends**: As an experiment, I asked my friends to ask me 3 questions on WhatsApp, and responded with 2 candidate responses (one from me and one from the LLM). My friends then had to guess which candidate response was mine and which one was Llama's.
 
 The result? The model fooled *10%* (2/20) of my friends. Some of the model's responses were eerily similar to my own. Here are some examples:
-    - *Example 1*: <img width="628" alt="image" src="https://github.com/Ads-cmu/WhatsApp-Llama/assets/107292631/65361711-79eb-4cf1-862d-fae93a6b674a">
 
-    - *Example 2*: <img width="630" alt="image" src="https://github.com/Ads-cmu/WhatsApp-Llama/assets/107292631/700fadd0-086f-40fc-8337-5071accec94f">
+- *Example 1*: 
+    <p align="center">
+        <img width="628" alt="image" src="https://github.com/Ads-cmu/WhatsApp-Llama/assets/107292631/65361711-79eb-4cf1-862d-fae93a6b674a.png">
+    </p>
+
+- *Example 2*: 
+    <p align="center">
+        <img width="630" alt="image" src="https://github.com/Ads-cmu/WhatsApp-Llama/assets/107292631/700fadd0-086f-40fc-8337-5071accec94f.png">
+    </p>
   
    I believe that with access to more compute, this number could easily be pushed to ~40% (which would be near random guessing).  
 
