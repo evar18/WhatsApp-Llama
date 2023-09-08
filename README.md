@@ -1,4 +1,4 @@
-# WhatsApp-Llama-Model: Fine-tune LLM to Mimic Your WhatsApp Style!
+# WhatsApp-Llama: Fine-tune Llama 7b to Mimic Your WhatsApp Style
 
 This repository is a fork of the `facebookresearch/llama-recipes`, adapted to fine-tune a Llama 7b chat model to replicate your personal WhatsApp texting style. By simply inputting your WhatsApp conversations, you can train the LLM to respond just like you do! Llama 7B chat is finetuned using parameter efficient finetuning (QLoRA) and int4 quantization on a single GPU (P100 with 16GB gpu memory).
 
