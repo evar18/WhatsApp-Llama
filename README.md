@@ -4,46 +4,64 @@ This repository is a fork of the `facebookresearch/llama-recipes`, adapted to fi
 
 ## My Results
 
-1. **Quick Learning**: The fine-tuned Llama model picked up on my texting nuances rapidly. The average words generated in the output reduced by x%, and the model accurately replicated my unique emoji usage and my common phrases, like "Whaddup" and "1 more".
-
-2. **Turing Test with Friends**: As an experiment, I had the LLM chat with some of my friends without them knowing. The result? It fooled 2 out of 20 of them! Some of the model's responses were eerily similar to my own. Here are some examples:
+1. **Quick Learning**: The fine-tuned Llama model picked up on my texting nuances rapidly.
+   - The average words generated in the finetuned Llama is *300%* more more than vanilla Llama. I usually type longer replies, so this checks out
+   - The model accurately replicated common phrases I say and my emoji usage
+  
+2. **Turing Test with Friends**: As an experiment, I asked my friends to ask me 3 questions on WhatsApp, and responded with 2 candidate responses (one from me and one from the LLM). My friends then had to guess which candidate response was mine and which one was Llama's. The result? The model fooled *10%* (2/20) of my friends. Some of the model's responses were eerily similar to my own. Here are some examples:
     - *Example 1*: [Add text here]
     - *Example 2*: [Add text here]
     - *Example 3*: [Add text here]
+  
+   I believe that with access to more compute, this number could easily be pushed to ~40% (near random guessing).  
 
 ## Getting Started
 
 Here's a step-by-step guide on setting up this repository and creating your own customized dataset:
 
 ### 1. Exporting WhatsApp Chats
-[Provide detailed instructions on how to export WhatsApp chats, e.g., selecting a chat -> clicking on the three dots at the top right -> More -> Export chat]
+Details on how to export your WhatsApp chats can be found [here](https://faq.whatsapp.com/1180414079177245/?cms_platform=android). I exported 10 WhatsApp chats from friends who I speak to often. Be sure to exclude media while exporting. Each chat was saved as `<friend_name>Chat.txt`.
 
 ### 2. Preprocessing the Dataset
 Run the provided preprocessing files to convert the exported chat into a format suitable for training:
 
+#### Convert text files to json:
 ```bash
-python preprocessing_script.py --input_path=<path_to_exported_chat> --output_path=<path_to_preprocessed_data>
+python preprocessing.py <your_name> <your_contact_name> <friend_name> <friend_contact_name> <folder_path>
 ```
+1. `your_name` refers to your name (Llama will learn this name)
+2. `your_contact_name` refers to how you've saved your number on your phone
+3. `friend_name` refers to the name of your friend (Llama will learn this name)
+4. `friend_contact_name` refers to the name you've used to save your friend's contact
+5. `folder_path` should be the path in which you've stored your whatsapp chats.
+
+#### Convert json files to csv
+```bash
+python prepare_dataset.py <dataset_folder> <your_name> <save_file>
+```
+1. `dataset_folder` refers to the folder with your json files
+2. `your_name` refers to your name (Llama will learn this name)
+3. `save_file` file path of the final csv
 
 ### 3. Validating the Dataset
 Here's the expected format for the preprocessed dataset:
 
 ```
-[Provide example format here]
+| ID |   Context  |    Reply   |
+| -- | ---------- | ---------- |
+| 1  | Friend: Hi | What's up? |
+|    | You: Hi    |            |
+
 ```
 
 Ensure your dataset looks like the above to verify you've done it correctly.
 
 ### 4. Model Configuration
 - If you're using a **P100 GPU**, load the model in **4 bits**:
-    ```bash
-    python train_script.py --bit_precision=4 --gpu_type=P100
-    ```
 
-- If you're using an **A100 GPU**, load the model in **8 bits**:
-    ```bash
-    python train_script.py --bit_precision=8 --gpu_type=A100
-    ```
+- If you're using an **A100 GPU**, you can load the model in **8 bits**:
+
+PEFT adds around 4.6M parameters, or 6% of total model weights. 
 
 ### 5. Training Time
 For reference, a 10MB dataset will complete 1 epoch in approximately 7 hours on a P100 GPU. My results shared above were achieved after training for just 1 epoch.
