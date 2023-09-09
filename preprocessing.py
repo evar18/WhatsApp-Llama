@@ -49,7 +49,7 @@ def collate_messages(messages, user_name, bot_name, friend_name):
 			sp+=1
 		else:
 			if og_user==user_name:
-				conversations.append({og_user + ' (' + friend_name +')': snippet})
+				conversations.append({'Friend (' + friend_name +')': snippet})
 			if og_user==bot_name:
 				conversations.append({og_user: snippet})
 			snippet=''
@@ -61,17 +61,18 @@ def collate_messages(messages, user_name, bot_name, friend_name):
 
 
 if __name__ == "__main__":
-	if len(sys.argv) != 6:
-		print("Usage: script_name.py <your_name> <your_contact_name> <friend_name> <friend_contact_name> <folder_path>")
+	if len(sys.argv) != 7:
+		print("Usage: preprocessing.py <your_name> <your_contact_name> <friend_name> <friend_contact_name> <input_folder_path> <output_folder_path>")
 		sys.exit(1)
 
 	bot_name = sys.argv[1]
 	your_contact_name = sys.argv[2]
 	friend_name = sys.argv[3]
 	contact_name = sys.argv[4]
-	folder_path = sys.argv[5]
+	input_folder_path = sys.argv[5]
+	output_folder_path = sys.argv[6]
 
-	with open(folder_path+friend_name+'Chat.txt', encoding="utf-8") as f:
+	with open(input_folder_path+'/'+friend_name+'Chat.txt', encoding="utf-8") as f:
 		lines = f.readlines()
 
 	regex = r"\s?\[\d{1,2}\/\d{1,2}\/\d{2,4}\, \d{1,2}:\d{1,2}:\d{1,2}\s[APM]{2}\]\s" #remove timestamps
@@ -91,5 +92,5 @@ if __name__ == "__main__":
 
 	#print(dataset)
 	dataset = collate_messages(dataset, friend_name, bot_name, friend_name)
-	with open('json_dataset/'+friend_name+'Chat.json', 'w') as file:
+	with open(output_folder_path+'/'+friend_name+'Chat.json', 'w') as file:
 		json.dump(dataset, file)

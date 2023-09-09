@@ -7,6 +7,7 @@ https://huggingface.co/datasets/samsum
 import json
 import os
 import pandas as pd
+import sys
 
 def format_context(messages):
     context = ''
@@ -22,7 +23,7 @@ def format_output(message):
 
 if __name__=="__main__":
     if len(sys.argv) != 4:
-        print("Usage: script_name.py <dataset_folder> <your_name> <save_file>")
+        print("Usage: prepare_dataset.py <dataset_folder> <your_name> <save_file>")
         sys.exit(1)
 
 
@@ -44,4 +45,5 @@ if __name__=="__main__":
                 count+=1
 
     df = pd.DataFrame(conv)
+    df.columns = ['Context','Reply']
     df.to_csv(save_file)
