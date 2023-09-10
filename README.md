@@ -1,16 +1,16 @@
 # WhatsApp-Llama: Fine-tune Llama 7b to Mimic Your WhatsApp Style
 
-This repository is a fork of the `facebookresearch/llama-recipes`, adapted to fine-tune a Llama 7b chat model to replicate your personal WhatsApp texting style. By simply inputting your WhatsApp conversations, you can train the LLM to respond just like you do! Llama 7B chat is finetuned using parameter efficient finetuning (QLoRA) and int4 quantization on a single GPU (P100 with 16GB gpu memory).
+This repository is a fork of the `facebookresearch/llama-recipes`, adapted to fine-tune a Llama-2 7b chat model to replicate your personal WhatsApp texting style. By simply inputting your WhatsApp conversations, you can train the LLM to respond just like you do! Llama-2 7B chat is finetuned using parameter efficient finetuning (QLoRA) and int4 quantization on a single GPU (P100 with 16GB gpu memory).
 
 ## My Results
 
-1. **Quick Learning**: The fine-tuned Llama model picked up on my texting nuances rapidly.
-   - The average words generated in the finetuned Llama is *300%* more more than vanilla Llama. I usually type longer replies, so this checks out
+1. **Quick Learning**: The fine-tuned Llama-2 model picked up on my texting nuances rapidly.
+   - The average words generated in the finetuned Llama-2 is *300%* more than vanilla Llama-2. I usually type longer replies, so this checks out
    - The model accurately replicated common phrases I say and my emoji usage
   
 2. **Turing Test with Friends**: As an experiment, I asked my friends to ask me 3 questions on WhatsApp, and responded with 2 candidate responses (one from me and one from the LLM). My friends then had to guess which candidate response was mine and which one was Llama's.
 
-The result? The model fooled *10%* (2/20) of my friends. Some of the model's responses were eerily similar to my own. Here are some examples:
+The result? The model fooled *10%* (2/20) of my friends. Some of the model's responses were eerily similar to my own. Here are some examples (Candidate A is Llama-2 7B):
 
 - *Example 1*: 
     <p align="center">
