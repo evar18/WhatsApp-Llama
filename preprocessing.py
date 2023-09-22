@@ -84,13 +84,10 @@ if __name__ == "__main__":
 		if remove_placeholders(message):
 			continue
 		message = remove_links(message)
-		# message = remove_placeholders(message)
 		message = replace_users(message, contact_name, friend_name, bot_name, your_contact_name)
 
 		dataset.append(message)
-		#print(message)
 
-	#print(dataset)
 	dataset = collate_messages(dataset, friend_name, bot_name, friend_name)
 	with open(output_folder_path+'/'+friend_name+'Chat.json', 'w') as file:
 		json.dump(dataset, file)
