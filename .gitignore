@@ -4,3 +4,5 @@ __pycache__
 Datasets/chats/
 Datasets/json/
 FinalDataset.csv
+chats
+.env
