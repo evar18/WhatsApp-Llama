@@ -48,9 +48,11 @@ def collate_messages(messages, user_name, bot_name, friend_name):
 			snippet = snippet + clean_text(text)
 			sp+=1
 		else:
-			if og_user==user_name:
+			#if og_user==user_name:
+			if user_name in og_user:
 				conversations.append({'Friend (' + friend_name +')': snippet})
-			if og_user==bot_name:
+			#if og_user==bot_name:
+			if bot_name in og_user:
 				conversations.append({og_user: snippet})
 			snippet=''
 			fp = sp
@@ -87,6 +89,7 @@ if __name__ == "__main__":
 		message = replace_users(message, contact_name, friend_name, bot_name, your_contact_name)
 
 		dataset.append(message)
+
 
 	dataset = collate_messages(dataset, friend_name, bot_name, friend_name)
 	with open(output_folder_path+'/'+friend_name+'Chat.json', 'w') as file:

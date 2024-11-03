@@ -37,7 +37,7 @@ if __name__=="__main__":
             data = json.load(f)
             count=0
             for message in data:
-                if list(message.keys())[0]==user_name and count!=0: #expect the other person to start the conversation
+                if user_name in list(message.keys())[0] and count!=0: #expect the other person to start the conversation
                     if(count>=5):
                         conv.append([format_context(data[count-5:count]),format_output(message)])
                     else:
