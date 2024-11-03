@@ -2,7 +2,7 @@ import datasets
 from .utils import Concatenator
 
 def get_preprocessed_whatsapp(dataset_config, tokenizer, split):
-    dataset = datasets.load_dataset('csv', data_files='FinalDataset.csv')[split]
+    dataset = datasets.load_dataset('csv', data_files='final.csv')[split]
 
     prompt = (
         f"Reply to the following messages as the user Advaith. Provide just one reply, do not continue the conversation.\n{{context}}\n---\Advaith:\n{{reply}}{{eos_token}}"
